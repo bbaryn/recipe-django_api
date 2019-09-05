@@ -9,7 +9,7 @@ services:
     volumes:
       - ./app:/app
     command: >
-      sh -c "python3 manage.py runserver 0.0.0.0:8000"
+      sh -c "sleep 7; python3 manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
       - DB_NAME=app
