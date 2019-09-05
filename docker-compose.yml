@@ -9,7 +9,7 @@ services:
     volumes:
       - ./app:/app
     command: >
-      /bin/bash -c "sleep 7; python3 manage.py runserver -h 0.0.0.0 -p 8000 -r -d"
+      sh -c "sleep 7; python3 manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
       - DB_NAME=app
@@ -17,8 +17,7 @@ services:
       - DB_PASS=root
     depends_on:
       - db
-    links:
-      - db
+    command: ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]
 
   db:
     image: postgres:10-alpine
