@@ -10,7 +10,7 @@ CREATE_USER_URL = reverse('user:create')
 
 
 def create_user(**param):
-    return get_user_model().objects.create_user(**params)
+    return get_user_model().objects.create_user(**param)
 
 
 class PublicUserApiTests(TestCase):
@@ -40,7 +40,7 @@ class PublicUserApiTests(TestCase):
         }
         create_user(**payload)
 
-        res = self.client.post(CREATE_USER_URL, payload)
+        self.client.post(CREATE_USER_URL, payload)
 
     def test_password_to_short(self):
         """Test that password must be more than 5 characters """
@@ -53,5 +53,5 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
         user_exist = get_user_model().objects.filter(
             email=payload['email']
-        ).exist()
+        ).exists()
         self.assertFalse(user_exist)
