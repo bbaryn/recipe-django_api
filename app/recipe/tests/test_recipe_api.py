@@ -5,7 +5,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from core.models import Recipe
+from core.models import Recipe, Tag, Ingredients
 
 from recipe.serializers import RecipeSerializer, RecipeDetailSerilizer
 
@@ -14,7 +14,7 @@ RECIPES_URL = reverse('recipe:recipe-list')
 
 def detail_url(recipe_id):
     """Return recipe detail URL"""
-    return revers('recipe:recipe-detail', args=[recipe_id])
+    return reverse('recipe:recipe-detail', args=[recipe_id])
 
 
 def sample_tag(user, name='Main course'):
