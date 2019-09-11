@@ -242,14 +242,14 @@ class RecipeImageUploadTests(TestCase):
         recipe1 = sample_recipe(user=self.user, title='Thai vegetable curry')
         recipe2 = sample_recipe(user=self.user, title='Aubergine with tahini')
         tag1 = sample_tag(user=self.user, name='Vegan')
-        tag2 = sample_tag(user=self.user, name='Vegetarian')
+        tag2 = sample_tag(user=self.user, name='vagetarian')
         recipe1.tags.add(tag1)
         recipe2.tags.add(tag2)
         recipe3 = sample_recipe(user=self.user, title='Fish and chips')
 
-        res =self.client.get(
+        res = self.client.get(
             RECIPES_URL,
-            {'tags':f'{tag1.id},{tag2.id}'}
+            {'tags': f'{tag1.id},{tag2.id}'}
         )
 
         serializer1 = RecipeSerializer(recipe1)
@@ -263,10 +263,10 @@ class RecipeImageUploadTests(TestCase):
         """Test returning recipes with specific ingredients"""
         recipe1 = sample_recipe(user=self.user, title='Posh beans on toast')
         recipe2 = sample_recipe(user=self.user, title='Chicken cacciatore')
-        ingrdients1 = sample_tag(user=self.user, name='Feta cheese')
-        ingrdients2 = sample_tag(user=self.user, name='Chicken')
-        recipe1.tags.add(ingrdients1)
-        recipe2.tags.add(ingrdients2)
+        ingredient1 = sample_ingredient(user=self.user, name='Feta cheese')
+        ingredient2 = sample_ingredient(user=self.user, name='Chicken')
+        recipe1.ingredients.add(ingredient1)
+        recipe2.ingredients.add(ingredient2)
         recipe3 = sample_recipe(user=self.user, title='Steak and mushrooms')
 
         res = self.client.get(
