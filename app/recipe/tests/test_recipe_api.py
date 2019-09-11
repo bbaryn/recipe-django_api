@@ -201,6 +201,7 @@ class PrivateRecipeApiTests(TestCase):
         tags = recipe.tags.all()
         self.assertEqual(len(tags), 0)
 
+
 class RecipeImageUploadTests(TestCase):
 
     def setUp(self):
